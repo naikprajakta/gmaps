@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Our first Google Map</title>
+        <script src="//maps.googleapis.com/maps/api/js?sensor=false"
+            type="text/javascript"></script>
+        <script type="text/javascript">
+
+        //<![CDATA[
+        var geocoder;
+        function load() {
+		alert("hi");
+            if (GBrowserIsCompatible()) {
+                var map = new GMap2(document.getElementById("map"));
+		map.addControl(new GSmallMapControl());
+		map.addControl(new GMapTypeControl());
+		 geocoder = new google.maps.Geocoder();
+		geocoder.geocode( { 'address': 'sydney'}, function(results, status) {
+		      if (status == google.maps.GeocoderStatus.OK) {
+		        map.setCenter(results[0].geometry.location);
+		        var marker = new google.maps.Marker({
+		            map: map, 
+		            position: results[0].geometry.location
+		        });
+		      } else {
+			        alert("Geocode was not successful for the following reason: " + status);
+		      }
+	    });                
+		//map.setCenter(new GLatLng(-41.5, -100), 5);//latitude and longitude
+		//var marker = new GMarker(new GLatLng(42.8487, -73.755));
+	//map.addOverlay(marker);
+            }
+        }
+        //]]>
+        </script>
+    </head>
+    <body onload="load()" onunload="GUnload()">
+        <div id="map" style="width: 420px; height: 420px"></div>
+    </body>
+</html>

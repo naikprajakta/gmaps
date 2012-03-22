@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps JavaScript API Example</title>
+    <script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyBy84SeK40nWoCjtFNfKD4jcOBEFAu6s68"
+      type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+	
+    var WINDOW_HTML = '<div style="width: 210px; 
+	padding-right: 10px"><a href="http://www.hostrocket.com">
+	HostRocket</a> servers are located at 
+	21 Corporate Drive, Clifton Park, NY 12065. 
+	Phone: 1-866-519-7079</div>';	
+	
+    function load() {
+      if (GBrowserIsCompatible()) {
+        var map = new GMap2(document.getElementById("map"));
+	map.addControl(new GSmallMapControl());
+	map.addControl(new GMapTypeControl());
+        map.setCenter(new GLatLng(42.8487, -73.755), 13);
+	var marker = new GMarker(new GLatLng(42.8487, -73.755));
+	map.addOverlay(marker);
+	GEvent.addListener(marker, "click", function() {
+	marker.openInfoWindowHtml(WINDOW_HTML);
+	  });
+	marker.openInfoWindowHtml(WINDOW_HTML);			
+      }
+    }
+    //]]>
+    </script>
+  </head>
+  <body onload="load()" onunload="GUnload()">
+    <div id="map" style="width: 500px; height: 300px"></div>
+  </body>
+</html>

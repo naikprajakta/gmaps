@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Our first Google Map</title>
+        <script src="http://maps.google.com/maps?file=api&v=2&key=MYKEY"
+            type="text/javascript"></script>
+        <script type="text/javascript">
+
+        //<![CDATA[
+
+        function load() {
+            if (GBrowserIsCompatible()) {
+                var map = new GMap2(document.getElementById("map"));
+                map.setCenter(new GLatLng(-41.5, -185), 5);
+            }
+        }
+        //]]>
+        </script>
+    </head>
+    <body onload="load()" onunload="GUnload()">
+        <div id="map" style="width: 420px; height: 420px"></div>
+    </body>
+</html>
